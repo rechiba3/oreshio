@@ -1,83 +1,68 @@
-class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
+class UsersController < InheritedResources::Base
+  before_filter :login_check, only: [ :login, :new ]
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
+  def login_check
+    redirect_to new_story_path if session[:login_user]
   end
 
-  # GET /users/1
-  # GET /users/1.json
-  def show
-    @user = User.find(params[:id])
+  def auth_callback
+    session[:oauth_data] = nil if session[:oauth_data]
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
+    omniauth = request.env['omniauth.auth']
+    oauth_data = {
+      uid: omniauth[:uid],
+      name: omniauth[:info][:name]
+    }
+
+    oauth = Oauth.find_or_create_by_provider_and_uid( omniauth[:provider], omniauth[:uid] )
+
+    if oauth.user.present?
+      session[:login_user] =  oauth.user_id
+      return redirect_to new_story_path
+    else
+      redirect_to new_user_path
     end
+
+    if omniauth[:provider] == "facebook"
+      oauth_data[:image_url] = omniauth[:info][:image].sub('?type=square', '?width=200&height=200')
+      avatar_image = open(URI.parse(oauth_data[:image_url])) rescue ''
+
+      oauth.update_attributes( 
+        :token            => omniauth[:credentials][:token],
+        :token_expires_at => omniauth[:credentials][:expires_at],
+        :avatar => avatar_image )
+    elsif omniauth[:provider] == "twitter"
+      oauth_data[:image_url] = omniauth[:info][:image].sub('normal', 'bigger')
+      avatar_image = open(URI.parse(oauth_data[:image_url])) rescue ''
+
+      oauth.update_attributes(
+        :token        => omniauth[:credentials][:token], 
+        :token_secret => omniauth[:credentials][:secret],
+        :avatar => avatar_image )
+    end
+
+    session[:oauth_data] = oauth_data
   end
 
-  # GET /users/new
-  # GET /users/new.json
+  def logout
+    session[:oauth_data] = nil
+    session[:login_user] = nil
+    redirect_to root_path
+  end
+
   def new
-    @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @user }
-    end
+    return redirect_to login_users_path unless session[:oauth_data]
+    @user = User.new name: session[:oauth_data][:name]
   end
 
-  # GET /users/1/edit
-  def edit
-    @user = User.find(params[:id])
-  end
-
-  # POST /users
-  # POST /users.json
   def create
-    @user = User.new(params[:user])
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /users/1
-  # PUT /users/1.json
-  def update
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
+    create! do |format|
+      format.html {     
+        oauth = Oauth.find_by_uid(session[:oauth_data][:uid])
+        oauth.update_attributes( user_id: @user.id )
+        session[:login_user] = @user.id
+        redirect_to new_story_path
+      }
     end
   end
 end

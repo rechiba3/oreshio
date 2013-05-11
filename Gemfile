@@ -16,7 +16,8 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
-  gem 'therubyracer'
+  gem 'therubyracer', '0.11.1'
+  gem 'libv8', '~> 3.11.8.13'
 
   gem 'uglifier', '>= 1.0.3'
 end
@@ -34,3 +35,8 @@ gem 'simple_form'
 gem 'kaminari'
 gem 'paperclip', '3.3.1'
 gem 'inherited_resources'
+
+gem 'figaro'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
