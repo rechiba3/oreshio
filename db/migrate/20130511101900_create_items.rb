@@ -4,7 +4,6 @@ class CreateItems < ActiveRecord::Migration
 
       t.integer :story_id
       t.string  :item
-      t.timestamps
     end
   end
 end

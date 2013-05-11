@@ -11,21 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130511151743) do
+ActiveRecord::Schema.define(:version => 20130511201236) do
 
   create_table "catchphrases", :force => true do |t|
-    t.string   "catchphrase_head"
-    t.string   "catchphrase_body"
-    t.string   "catchphrase_foot"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.string "catchphrase_head"
+    t.string "catchphrase_body"
+    t.string "catchphrase_foot"
+  end
+
+  create_table "create_schedules", :force => true do |t|
+    t.datetime "event_day"
+    t.string   "event_time"
+    t.string   "todo"
+    t.text     "annotation"
   end
 
   create_table "items", :force => true do |t|
-    t.integer  "story_id"
-    t.string   "item"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer "story_id"
+    t.string  "item"
   end
 
   create_table "oauths", :force => true do |t|
@@ -45,18 +48,7 @@ ActiveRecord::Schema.define(:version => 20130511151743) do
   add_index "oauths", ["uid"], :name => "index_oauths_on_uid", :unique => true
 
   create_table "posts", :force => true do |t|
-    t.string   "post"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "sachedules", :force => true do |t|
-    t.datetime "event_day"
-    t.string   "event_time"
-    t.string   "todo"
-    t.string   "annotation"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string "name"
   end
 
   create_table "stories", :force => true do |t|
@@ -65,19 +57,19 @@ ActiveRecord::Schema.define(:version => 20130511151743) do
     t.string   "sub_title"
     t.datetime "event_day"
     t.string   "catchphrase"
-    t.integer  "sachedule_id"
+    t.integer  "schedule_id"
     t.string   "mail"
-    t.string   "memo"
-    t.string   "rule"
+    t.text     "memo"
+    t.text     "rule"
     t.boolean  "status"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "story_users", :force => true do |t|
-    t.integer  "post_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer "story_id"
+    t.integer "user_id"
+    t.integer "post_id"
   end
 
   create_table "users", :force => true do |t|
@@ -90,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20130511151743) do
     t.integer  "story_id"
     t.string   "location"
     t.string   "map"
+    t.string   "comment"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

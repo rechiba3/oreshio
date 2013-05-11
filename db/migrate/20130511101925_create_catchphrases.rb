@@ -5,7 +5,6 @@ class CreateCatchphrases < ActiveRecord::Migration
       t.string :catchphrase_head
       t.string :catchphrase_body
       t.string :catchphrase_foot
-      t.timestamps
     end
   end
 end

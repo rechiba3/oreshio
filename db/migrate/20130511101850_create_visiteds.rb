@@ -5,6 +5,7 @@ class CreateVisiteds < ActiveRecord::Migration
       t.integer :story_id
       t.string  :location
       t.string  :map
+      t.string  :comment
       t.timestamps
     end
   end

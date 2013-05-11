@@ -2,5 +2,5 @@ class Item < ActiveRecord::Base
   # attr_accessible :title, :body
 
   #しおり
-  belongs_to :stories
+  belongs_to :story
 end
