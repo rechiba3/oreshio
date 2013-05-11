@@ -11,19 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130511201236) do
+ActiveRecord::Schema.define(:version => 20130511151743) do
 
   create_table "catchphrases", :force => true do |t|
     t.string "catchphrase_head"
     t.string "catchphrase_body"
     t.string "catchphrase_foot"
-  end
-
-  create_table "create_schedules", :force => true do |t|
-    t.datetime "event_day"
-    t.string   "event_time"
-    t.string   "todo"
-    t.text     "annotation"
   end
 
   create_table "items", :force => true do |t|

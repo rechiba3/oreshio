@@ -1,3 +1,3 @@
 class Post < ActiveRecord::Base
-  has_namy :story_users
+  has_many :story_users
 end
