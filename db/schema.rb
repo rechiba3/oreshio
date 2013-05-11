@@ -11,6 +11,87 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20130511151743) do
+
+  create_table "catchphrases", :force => true do |t|
+    t.string   "catchphrase_head"
+    t.string   "catchphrase_body"
+    t.string   "catchphrase_foot"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "items", :force => true do |t|
+    t.integer  "story_id"
+    t.string   "item"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "oauths", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider",            :null => false
+    t.string   "uid",                 :null => false
+    t.string   "token"
+    t.string   "token_expires_at"
+    t.string   "token_secret"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "oauths", ["uid"], :name => "index_oauths_on_uid", :unique => true
+
+  create_table "posts", :force => true do |t|
+    t.string   "post"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "sachedules", :force => true do |t|
+    t.datetime "event_day"
+    t.string   "event_time"
+    t.string   "todo"
+    t.string   "annotation"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "stories", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "sub_title"
+    t.datetime "event_day"
+    t.string   "catchphrase"
+    t.integer  "sachedule_id"
+    t.string   "mail"
+    t.string   "memo"
+    t.string   "rule"
+    t.boolean  "status"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "story_users", :force => true do |t|
+    t.integer  "post_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "visiteds", :force => true do |t|
+    t.integer  "story_id"
+    t.string   "location"
+    t.string   "map"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end
