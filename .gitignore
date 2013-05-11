@@ -19,3 +19,9 @@
 Thumbs.db
 
 app/assets/stylesheets/scaffolds.css.scss
+
+# Ignore application configuration
+/config/application.yml
+
+
+/public/system
