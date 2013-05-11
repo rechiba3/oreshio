@@ -1,0 +1,21 @@
+<h1>Listing story_users</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @story_users.each do |story_user| %>
+  <tr>
+    <td><%= link_to 'Show', story_user %></td>
+    <td><%= link_to 'Edit', edit_story_user_path(story_user) %></td>
+    <td><%= link_to 'Destroy', story_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Story user', new_story_user_path %>

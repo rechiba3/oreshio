@@ -1,0 +1,3 @@
+class Sachedule < ActiveRecord::Base
+  # attr_accessible :title, :body
+end
