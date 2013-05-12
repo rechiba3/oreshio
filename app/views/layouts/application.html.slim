@@ -36,7 +36,7 @@ html lang="ja"
               span 使い方
           - if session[:login_user]
             li.setting
-              = link_to '#' do
+              = link_to edit_user_path(session[:login_user]) do 
                 span 設定
           - else
             li.login
