@@ -1,5 +1,5 @@
 class Story < ActiveRecord::Base
-  attr_accessible :title, :sub_title, :event_day, :memo, :rule, :items_attributes
+  attr_accessible :title, :sub_title, :event_day, :memo, :rule, :items_attributes, :visiteds_attributes
 
   # ========= association =========
 
@@ -11,6 +11,7 @@ class Story < ActiveRecord::Base
 
   #めぐリスト
   has_many :visiteds, :dependent => :destroy
+  accepts_nested_attributes_for :visiteds, reject_if: lambda { |i| i[:location].blank? }, allow_destroy: true
 
   #持ち物
   has_many :items, :dependent => :destroy

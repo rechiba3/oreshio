@@ -18,11 +18,23 @@
   .field
     label もちもの
     = f.simple_fields_for :items do |story_item|
-      .item_field
+      .field_inner
         = story_item.input :name, label: false
         = story_item.hidden_field :_destroy
         - if params[:action] == 'edit'
           = link_to '削除', 'javascript:void(0)', onclick: 'remove_fields(this)'
+
+  .field
+    label めぐりすと
+    = f.simple_fields_for :visiteds do |story_visited|
+      .field_inner
+        = story_visited.input :location, label: 'めぐり先'
+        = story_visited.input :map, label: '地図URL'
+        = story_visited.input :comment, label: 'コメント'
+        = story_visited.hidden_field :_destroy
+        - if params[:action] == 'edit'
+          = link_to '削除', 'javascript:void(0)', onclick: 'remove_fields(this)'
+      hr
 
   .actions
     = f.submit 'しおりを作成'

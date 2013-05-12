@@ -8,12 +8,15 @@ class StoriesController < InheritedResources::Base
   def new
     @story = Story.new
     3.times { @story.items.build }
+    3.times { @story.visiteds.build }
   end
 
   def edit
     @story = Story.find(params[:id])
-    count = 3 - @story.items.count
-    count.times { @story.items.build }
+    item_count = 3 - @story.items.count
+    item_count.times { @story.items.build }
+    visited_count = 3 - @story.visiteds.count
+    visited_count.times { @story.visiteds.build }
   end
 
 end

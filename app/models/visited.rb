@@ -1,5 +1,5 @@
 class Visited < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :location, :map, :comment
 
   #しおり
   belongs_to :story
