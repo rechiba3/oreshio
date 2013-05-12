@@ -1,5 +1,5 @@
 class Story < ActiveRecord::Base
-  attr_accessible :title, :sub_title, :event_day, :memo, :rule, :items_attributes, :visiteds_attributes
+  attr_accessible :title, :sub_title, :event_day, :memo, :rule, :items_attributes, :visiteds_attributes, :schedules_attributes
 
   # ========= association =========
 
@@ -19,12 +19,12 @@ class Story < ActiveRecord::Base
 
   #スケジュール
   has_many :schedules, :dependent => :destroy
+  accepts_nested_attributes_for :schedules, reject_if: lambda { |i| i[:annotation].blank? }, allow_destroy: true
 
   # ========= validation =========
 
   validates :title, presence: true
   validates :rule, presence: true
   validates :event_day, presence: true
-
 
 end

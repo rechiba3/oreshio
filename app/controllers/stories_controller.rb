@@ -9,6 +9,7 @@ class StoriesController < InheritedResources::Base
     @story = Story.new
     3.times { @story.items.build }
     3.times { @story.visiteds.build }
+    @story.schedules.build
   end
 
   def edit
@@ -17,6 +18,7 @@ class StoriesController < InheritedResources::Base
     item_count.times { @story.items.build }
     visited_count = 3 - @story.visiteds.count
     visited_count.times { @story.visiteds.build }
+    @story.schedules.build unless @story.schedules.present?
   end
 
 end

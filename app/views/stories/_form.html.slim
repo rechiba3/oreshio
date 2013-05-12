@@ -20,8 +20,8 @@
     = f.simple_fields_for :items do |story_item|
       .field_inner
         = story_item.input :name, label: false
-        = story_item.hidden_field :_destroy
         - if params[:action] == 'edit'
+          = story_item.hidden_field :_destroy
           = link_to '削除', 'javascript:void(0)', onclick: 'remove_fields(this)'
 
   .field
@@ -31,8 +31,17 @@
         = story_visited.input :location, label: 'めぐり先'
         = story_visited.input :map, label: '地図URL'
         = story_visited.input :comment, label: 'コメント'
-        = story_visited.hidden_field :_destroy
         - if params[:action] == 'edit'
+          = story_visited.hidden_field :_destroy
+          = link_to '削除', 'javascript:void(0)', onclick: 'remove_fields(this)'
+
+  .field
+    label タイムスケジュール
+    = f.simple_fields_for :schedules do |story_schedule|
+      .field_inner
+        = story_schedule.input :annotation, label: false
+        - if params[:action] == 'edit'
+          = story_schedule.hidden_field :_destroy
           = link_to '削除', 'javascript:void(0)', onclick: 'remove_fields(this)'
       hr
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130511151743) do
+ActiveRecord::Schema.define(:version => 20130512024103) do
 
   create_table "catchphrases", :force => true do |t|
     t.string "catchphrase_head"
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(:version => 20130511151743) do
 
   create_table "posts", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "schedules", :force => true do |t|
+    t.integer  "story_id"
+    t.datetime "event_day"
+    t.string   "event_time"
+    t.string   "todo"
+    t.text     "annotation"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "stories", :force => true do |t|
