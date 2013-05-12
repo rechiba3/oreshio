@@ -1,13 +1,14 @@
 @charset "utf-8";
 
+/*
+ *= require_self
+*/
+
 /* default style - リセット
 ----------------------------------------------------------- */
-@import url("reset.css");
+@import "reset";
 
 /* all style
 ----------------------------------------------------------- */
-@import url("style.css");
+@import "style";
 
-/* print
------------------------------------------------------------ 
-@import url("./print.css");*/
