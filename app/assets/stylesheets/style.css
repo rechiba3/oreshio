@@ -108,7 +108,7 @@ nav {
 	background-image:url(/assets/nav_01.png);
     background-position:0px 0px;
     background-repeat:no-repeat;
-    text-indent:-1000px;
+    text-indent:-9999px;
     text-decoration:none;
     }
 .user a:hover
@@ -124,7 +124,7 @@ nav {
 	background-image:url(/assets/nav_02.png);
     background-position:0px 0px;
     background-repeat:no-repeat;
-    text-indent:-1000px;
+    text-indent:-9999px;
     text-decoration:none;
     }
 .howto a:hover
@@ -140,7 +140,7 @@ nav {
 	background-image:url(/assets/nav_03.png);
     background-position:0px 0px;
     background-repeat:no-repeat;
-    text-indent:-1000px;
+    text-indent:-9999px;
     text-decoration:none;
     }
 .login a:hover
@@ -156,7 +156,7 @@ nav {
 	background-image:url(/assets/nav_04.png);
     background-position:0px 0px;
     background-repeat:no-repeat;
-    text-indent:-1000px;
+    text-indent:-9999px;
     text-decoration:none;
     }
 .logout a:hover

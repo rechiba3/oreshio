@@ -18,9 +18,6 @@ html lang="ja"
           - else
             = link_to image_tag('logo.png', { alt: 'おれたちのしおり', title: 'おれたちのしおり' }), root_path
           span なんか計画をしおりにまとめられちゃうサービス
-        - if session[:login_user]
-          p = link_to 'ログアウト', logout_users_path
-
 
       //<!-- SNSシェアボタン -->
       = render 'share_btn'
@@ -34,10 +31,13 @@ html lang="ja"
           li.howto
             = link_to '#' do
               span 使い方
+          li.setting
+            = link_to '#' do
+              span 設定
           - if session[:login_user]
-            li.setting
-              = link_to '#' do
-                span 設定
+            li.logout
+              = link_to logout_users_path do
+                span ログアウト
           - else
             li.login
               = link_to login_users_path do
@@ -46,6 +46,6 @@ html lang="ja"
       = yield
 
       footer
-        // <!-- 開発者連絡先 -->
+      // <!-- 開発者連絡先 -->
         address お問い合わせは開発者まで。
         p.copyright 2013 &copy; おれたちのしおりprojectTeam
