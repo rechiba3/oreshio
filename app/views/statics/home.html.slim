@@ -1,1 +1,19 @@
-p = link_to '今すぐおれたちのしおりを作成する', new_story_path
+section#topSignup
+	// <!-- キービジュアル -->
+	h2#keyV
+		= image_tag 'http://placehold.it/960x72', alt: 'おれたちの計画を立てようぜ！いやっほーい', title: 'おれたちの計画を立てようぜ！いやっほーい', size: '960x72'
+
+	// <!-- サインアップ -->
+	p.topSignup
+		= link_to new_story_path do
+			span 今すぐしおりを作成する
+
+#contents
+	// <!-- お知らせ -->
+	section
+		h3 お知らせ
+		dl#newsList
+			dt 2013/05/12
+			dd サービスリリースしました
+			dt 2013/05/12
+			dd にゃー

@@ -1,0 +1,107 @@
+@charset "utf-8";
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video {
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  font-size:100%;
+  vertical-align:baseline;
+  background:transparent;
+}
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {
+  margin: 0;
+  padding: 0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+  font-style: normal;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+caption,th {
+  text-align: left;
+}
+q:before,q:after {
+  content: '';
+}
+object,
+embed {
+  vertical-align: top;
+}
+hr,legend {
+  display: none;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-size: 100%;
+}
+img,abbr,acronym,fieldset {
+  border: 0;
+}
+li {
+  list-style-type: none;
+}
+body {
+  background: #f7f7f7;
+  color: #333;
+  font-size: 12px;
+  font-family: "メイリオ","Meiryo",verdana,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",Osaka,"ＭＳ Ｐゴシック","MS PGothic",Sans-Serif;
+  line-height: 1.5;
+}
+* html body {	/* for IF6 */
+  font-family: "ＭＳ Ｐゴシック","MS PGothic",Sans-Serif;
+}
+body {
+  line-height:1.3;
+}
+
+article, aside, dialog, figure, footer, header, hgroup, nav, section {
+  display:block;
+}
+
+nav ul {
+  list-style:none;
+}
+
+blockquote, q {
+  quotes:none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content:'';
+  content:none;
+}
+
+a {
+  margin:0;
+  padding:0;
+  border:0;
+  font-size:100%;
+  vertical-align:baseline;
+  background:transparent;
+}
+
+mark {
+  background-color:#ff9;
+  color:#000;
+  font-style:italic;
+  font-weight:bold;
+}
+
+hr {
+  display:block;
+  height:1px;
+  border:0;
+  border-top:1px solid #cccccc;
+  margin:1em 0;
+  padding:0;
+}
+
+input, select {
+  vertical-align:middle;
+}

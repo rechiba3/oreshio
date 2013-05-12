@@ -1,13 +1,51 @@
 doctype html
-html
-	head
-  	title おれたちのしおり
-  	= stylesheet_link_tag    "application", :media => "all"
-  	= javascript_include_tag "application"
-  	= csrf_meta_tags
+html lang="ja"
+  head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width"
+    title おれたちのしおり │ なんかしおり作れちゃうWebサービス
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
 
-	p.logo = link_to 'おれたちのしおり', root_path
-	- if session[:login_user]
-		p = link_to 'ログアウト', logout_users_path
-	hr
-	= yield
+  body
+    #wrap
+      //<!-- サイトID -->
+      header
+        h1
+          - if params[:controller] == 'statics' && params[:action] == 'home'
+            = image_tag 'logo.png', alt: 'おれたちのしおり', title: 'おれたちのしおり'
+          - else
+            = link_to image_tag('logo.png', { alt: 'おれたちのしおり', title: 'おれたちのしおり' }), root_path
+          span なんか計画をしおりにまとめられちゃうサービス
+        - if session[:login_user]
+          p = link_to 'ログアウト', logout_users_path
+
+
+      //<!-- SNSシェアボタン -->
+      = render 'share_btn'
+
+      //<!-- グローバルナビゲーション -->
+      nav#gNav
+        ul#gNav
+          li.user
+            = link_to stories_path do
+              span おれのしおり
+          li.howto
+            = link_to '#' do
+              span 使い方
+          - if session[:login_user]
+            li.setting
+              = link_to '#' do
+                span 設定
+          - else
+            li.login
+              = link_to login_users_path do
+                span ログイン
+
+      = yield
+
+      footer
+        // <!-- 開発者連絡先 -->
+        address お問い合わせは開発者まで。
+        p.copyright 2013 &copy; おれたちのしおりprojectTeam
