@@ -1,4 +1,5 @@
 class StoriesController < InheritedResources::Base
+  layout false, :only => :show
   before_filter :login_check
 
   def login_check

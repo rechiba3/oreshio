@@ -1,0 +1,20 @@
+#contents
+  section
+    h3 しおり一覧
+    p = link_to 'しおりを作成する', new_story_path
+    hr
+    table width='100%'
+      tr
+        th width='20%' タイトル
+        th width='20%' サブタイトル
+        th width='20%' 計画日程
+        th width='40%' 操作
+      - @stories.each do |story|
+        tr
+          td = link_to story.title, story, target: '_blank'
+          td = story.sub_title
+          td = story.event_day.strftime("%Y年%m月%d日")
+          td
+            = link_to '編集', edit_story_path(story)
+            |　
+            = link_to '詳細', story_path(story), target: '_blank'

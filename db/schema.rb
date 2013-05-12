@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130512074118) do
+ActiveRecord::Schema.define(:version => 20130512144731) do
 
   create_table "catchphrases", :force => true do |t|
     t.string "catchphrase_head"
@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(:version => 20130512074118) do
     t.string   "sub_title"
     t.datetime "event_day"
     t.string   "catchphrase"
-    t.integer  "schedule_id"
     t.string   "mail"
     t.text     "memo"
     t.text     "rule"

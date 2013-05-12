@@ -1,0 +1,7 @@
+#contents
+  //<!-- ユーザ名登録 -->
+  section
+    h3 ユーザー名登録
+    = simple_form_for resource do |f|
+      = f.input :name, label: false
+      = f.submit 'アカウント登録'

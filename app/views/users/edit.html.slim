@@ -1,0 +1,7 @@
+#contents
+  section
+    h3 設定
+    h4 ユーザ名
+    = simple_form_for resource do |f|
+      = f.input :name, label: false
+      = f.submit '編集を保存'

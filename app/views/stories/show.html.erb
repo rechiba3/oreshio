@@ -1,5 +1,146 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title><%= @story.title %> │ おれたちのしおり</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div id="wrap">
+		<header id="lowLayer">
+			<!-- サイトID -->
+			<h1><%= @story.title %></h1>
+			<h2><%= @story.sub_title %></h2>
+			<!-- //サイトID -->
+		</header>
 
+		<!-- しおり作成・編集ナビゲーション -->
+		<div id="CustomizeMenu">
+			<ul id="ProjectNav">
+				<li>
+					<a href="#shiori0">表紙</a>
+				</li>
+				<li>
+					<a href="#shiori1">計画概要・ルール</a>
+				</li>
+				<li>
+					<a href="#shiori2">計画日程・メンバー</a>
+				</li>
+				<li>
+					<a href="#shiori3">タイムスケジュール</a>
+				</li>
+				<li>
+					<a href="#shiori4">行き先・場所</a>
+				</li>
+				<li>
+					<a href="#shiori5">もちもの</a>
+				</li>
+				<li>
+					<a href="#shiori6">メモ</a>
+				</li>
+			</ul>
+		</div>
+		<!-- //しおり作成・編集ナビゲーション -->
+		<div id="CustomizeContents">
+			<!-- 目次 -->
+			<section id="shiori0">
+				<h4>目次</h4>
+				<ul>
+					<li>
+						<a href="#shiori1">計画概要・ルール</a>
+					</li>
+					<li>
+						<a href="#shiori2">計画日程・メンバー</a>
+					</li>
+					<li>
+						<a href="#shiori3">タイムスケジュール</a>
+					</li>
+					<li>
+						<a href="#shiori4">行き先・場所</a>
+					</li>
+					<li>
+						<a href="#shiori5">もちもの</a>
+					</li>
+					<li>
+						<a href="#shiori6">メモ</a>
+					</li>
+				</ul>
+			</section>
+			<!-- //目次 -->
 
-<%= link_to 'Edit', edit_story_path(@story) %> |
-<%= link_to 'Back', stories_path %>
+			<!-- 計画概要・ルール -->
+			<section id="shiori1">
+				<h4>計画概要・ルール</h4>
+				<%= simple_format(@story.rule) %>
+			</section>
+			<!-- //計画概要・ルール -->
+
+			<!-- 計画日程・メンバー -->
+			<section id="shiori2">
+				<h4>計画日程</h4>
+				<p><%= @story.event_day.strftime("%Y年%m月%d日") %></p>
+				<!-- <h4>メンバー</h4>
+				<p>
+					1.はぐれメタル
+					<br>
+					2.ホイミスライム
+					<br>3.マドハンド</p>
+			</section> -->
+			<!-- //計画日程・メンバー -->
+
+			<!-- タイムスケジュール -->
+			<section id="shiori3">
+				<h4>タイムスケジュール</h4>
+				<% @story.schedules.each do |schedule| %>
+					<p><%= schedule.annotation %></p>
+				<% end %>
+			</section>
+			<!-- //タイムスケジュール -->
+
+			<!-- 行き先・場所 -->
+			<section id="shiori4">
+				<h4>行き先・場所</h4>
+				<% @story.visiteds.each do |visited| %>
+					<p><%= visited.location %><br /><%= visited.comment %></p>
+					<% if visited.map.present? %>
+						<p><a href="<%= visited.map %>">地図</a></p>
+					<% end %>
+				<% end %>
+			</section>
+			<!-- //行き先・場所 -->
+
+			<!-- もちもの -->
+			<section id="shiori5">
+				<h4>もちもの</h4>
+				<ul>
+					<% @story.items.each do |item| %>
+						<li><%= item.name %></li>
+					<% end %>
+				</ul>
+			</section>
+			<!-- //もちもの -->
+
+			<!-- メモ -->
+			<section id="shiori6">
+				<h4>メモ</h4>
+				<%= simple_format(@story.memo) %>
+			</section>
+			<!-- //メモ -->
+			<section class="custom">
+				<%= link_to 'このしおりを編集する', edit_story_path(@story) %>
+			</section>
+		</div>
+		<footer>
+			<!-- 開発者連絡先 -->
+			<address>お問い合わせは開発者まで。</address>
+			<p class="copyright">2013 © おれたちのしおりprojectTeam.</p>
+			<!-- //開発者連絡先 -->
+		</footer>
+	</div>
+</body>
+</html>

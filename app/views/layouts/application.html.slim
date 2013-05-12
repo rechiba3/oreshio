@@ -31,14 +31,17 @@ html lang="ja"
           li.howto
             = link_to '#' do
               span 使い方
-          li.setting
-            = link_to '#' do
-              span 設定
           - if session[:login_user]
+            li.setting
+              = link_to edit_user_path(session[:login_user]) do 
+                span 設定
             li.logout
               = link_to logout_users_path do
                 span ログアウト
           - else
+            li.setting
+              = link_to login_users_path do 
+                span 設定
             li.login
               = link_to login_users_path do
                 span ログイン
