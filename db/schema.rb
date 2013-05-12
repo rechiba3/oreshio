@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20130511151743) do
 
   create_table "items", :force => true do |t|
     t.integer "story_id"
-    t.string  "item"
+    t.string  "name"
   end
 
   create_table "oauths", :force => true do |t|

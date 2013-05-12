@@ -14,5 +14,15 @@
   .field
     = f.label :memo, 'メモ'
     = f.input :memo, label: false
+
+  .field
+    label もちもの
+    = f.simple_fields_for :items do |story_item|
+      .item_field
+        = story_item.input :name, label: false
+        = story_item.hidden_field :_destroy
+        - if params[:action] == 'edit'
+          = link_to '削除', 'javascript:void(0)', onclick: 'remove_fields(this)'
+
   .actions
     = f.submit 'しおりを作成'

@@ -3,7 +3,7 @@ class CreateItems < ActiveRecord::Migration
     create_table :items do |t|
 
       t.integer :story_id
-      t.string  :item
+      t.string  :name
     end
   end
 end
