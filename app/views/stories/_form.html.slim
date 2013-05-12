@@ -1,49 +1,93 @@
-= simple_form_for resource do |f|
-  .field
-    = f.label :title, 'タイトル[必須]'
-    = f.input :title, label: false
-  .field
-    = f.label :sub_title, 'サブタイトル'
-    = f.input :sub_title, label: false
-  .field
-    = f.label :rule, '計画概要・ルール[必須]'
-    = f.input :rule, label: false
-  .field
-    = f.label :event_day, '計画日程[必須]'
-    = f.input :event_day, label: false, as: :date
-  .field
-    = f.label :memo, 'メモ'
-    = f.input :memo, label: false
+//<!-- しおり作成・編集ナビゲーション -->
+#CustomizeMenu
+  ul#ProjectNav
+    li
+      a href="#shiori0" 表紙
+    li
+      a href="#shiori1" 計画概要・ルール
+    li
+      a href="#shiori2" 計画日程・メンバー
+    li
+      a href="#shiori3" タイムスケジュール
+    li
+      a href="#shiori4" 行き先・場所
+    li
+      a href="#shiori5" もちもの
+    li
+      a href="#shiori6" メモ
 
-  .field
-    label もちもの
+#CustomizeContents
+  = simple_form_for resource do |f|
+
+    //<!-- 表紙 -->
+    dl#shiori0
+      dt#CustomizeListTitle = f.label :title, 'タイトル[必須]'
+      dd = f.input :title, label: false, input_html: { size: '50', maxlength: '50', placeholder: '例）旅のしおり' }
+      dt#CustomizeListTitle = f.label :sub_title, 'サブタイトル'
+      dd = f.input :sub_title, label: false, input_html: { size: '50', maxlength: '50', placeholder: '例）ドラゴン討伐クエスト' }
+
+    //<!-- 計画概要・ルール -->
+    dl#shiori1
+      dt#CustomizeListTitle = f.label :rule, '計画概要・ルール'
+      dd
+        = f.input :rule, label: false, input_html: { cols: '50', rows: '4', maxlength: '140', placeholder: '例）今日は勇者がいないけど、ガンガンいこうぜ！' }
+
+    //<!-- 計画日程・メンバー -->
+    dl#shiori2
+      dt#CustomizeListTitle = f.label :event_day, '計画日程[必須]'
+      dd = f.input :event_day, label: false, as: :string, input_html: { type: 'date' }
+
+    //<!-- タイムスケジュール -->
+    dl#shiori3
+      dt#CustomizeListTitle
+        label タイムスケジュール
+      dd
+        = f.simple_fields_for :schedules do |story_schedule|
+          .field_inner
+            = story_schedule.input :annotation, label: false, input_html: { cols: '50', rows: '4', maxlength: '140', placeholder: '例）2013年05月11日(土曜日) 10:00　：　駅に集合' }
+            - if params[:action] == 'edit'
+              = story_schedule.hidden_field :_destroy
+              = link_to '削除', 'javascript:void(0)', onclick: 'remove_fields(this)'
+
+    //<!-- 行き先・場所 -->
+    dl#shiori4
+      dt#CustomizeListTitle
+        label 行き先・場所
+      = f.simple_fields_for :visiteds do |story_visited|
+        dd.custm
+          .field_inner
+            ol
+              li = story_visited.input :location, label: false, input_html: { size: '50', maxlength: '50', placeholder: '行き先名' }
+              li = story_visited.input :map, label: false, input_html: { size: '50', maxlength: '50', placeholder: 'マップURL' }
+              li = story_visited.input :comment, label: false, input_html: { cols: '50', rows: '4', maxlength: '140', placeholder: 'くわしく' }
+            - if params[:action] == 'edit'
+              = story_visited.hidden_field :_destroy
+              = link_to '削除', 'javascript:void(0)', onclick: 'remove_fields(this)'
+
+
+    //<!-- もちもの -->
+    dl#shiori5
+      dt#CustomizeListTitle
+        label もちもの
+
     = f.simple_fields_for :items do |story_item|
       .field_inner
-        = story_item.input :name, label: false
+        = story_item.input :name, label: false, input_html: { size: '50', maxlength: '50', placeholder: '例）薬草' }
         - if params[:action] == 'edit'
           = story_item.hidden_field :_destroy
           = link_to '削除', 'javascript:void(0)', onclick: 'remove_fields(this)'
 
-  .field
-    label めぐりすと
-    = f.simple_fields_for :visiteds do |story_visited|
-      .field_inner
-        = story_visited.input :location, label: 'めぐり先'
-        = story_visited.input :map, label: '地図URL'
-        = story_visited.input :comment, label: 'コメント'
-        - if params[:action] == 'edit'
-          = story_visited.hidden_field :_destroy
-          = link_to '削除', 'javascript:void(0)', onclick: 'remove_fields(this)'
+    //<!-- メモスペース -->
+    dl#shiori1
+      dt#CustomizeListTitle = f.label :memo, 'メモスペース'
+      dd = f.input :memo, label: false, input_html: { cols: '50', rows: '4', maxlength: '140', placeholder: 'フリーエリアです。ご自由にどうぞ' }
 
-  .field
-    label タイムスケジュール
-    = f.simple_fields_for :schedules do |story_schedule|
-      .field_inner
-        = story_schedule.input :annotation, label: false
-        - if params[:action] == 'edit'
-          = story_schedule.hidden_field :_destroy
-          = link_to '削除', 'javascript:void(0)', onclick: 'remove_fields(this)'
-      hr
-
-  .actions
-    = f.submit 'しおりを作成'
+    .actions
+      ul#CustomizeMenuSave
+        li
+          input type="reset" value="キャンセル"
+        li
+          input type="button" value="削除"
+        li
+          input type="button" value="下書き保存"
+        li = f.submit '公開'

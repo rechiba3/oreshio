@@ -233,6 +233,11 @@ ul #ProjectNav {
 	text-align:center;
 	text-align:left;
 }
+.actions{
+	clear:both;
+	margin: 20px 0;
+	padding-bottom: 40px;
+}
 #CustomizeMenu li {
 	margin-top: 10px;
 }

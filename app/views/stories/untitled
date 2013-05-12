@@ -1,0 +1,93 @@
+
+    <dt id="CustomizeListTitle">タイトル</dt>
+      <dd><input type="text" size="50" maxlength="50" placeholder="旅のしおり"></dd>
+    <dt id="CustomizeListTitle">サブタイトル</dt>
+      <dd><input type="text" size="50" maxlength="50" placeholder="ドラゴン討伐クエスト"></dd>
+    </dl>
+<!-- //表紙 -->
+
+<!-- 計画概要・ルール -->
+    <dl id="shiori1">
+    <dt id="CustomizeListTitle">計画概要・ルール</dt>
+      <dd><textarea cols="50" rows="4" maxlength="140" placeholder="今日は勇者がいないけど、ガンガンいこうぜ！"></textarea></dd>
+    </dl>
+<!-- //計画概要・ルール -->
+
+<!-- 計画日程・メンバー -->
+    <dl id="shiori2">
+    <dt id="CustomizeListTitle">計画日程</dt>
+      <dd><input type="date" name="date" size="50"></dd>
+    <dt id="CustomizeListTitle">メンバー</dt>
+      <dd><ul>
+        <li class="custm1"><input type="text" size="50" maxlength="50" placeholder="はぐれメタル"></li>
+        <li class="custm2"><input type="text" size="50" maxlength="50" placeholder="ホイミスライム"></li>
+        <li class="custm3"><input type="text" size="50" maxlength="50" placeholder="マドハンド"></li>
+      </ul></dd>
+    </dl>
+<!-- //計画日程・メンバー -->
+
+<!-- タイムスケジュール -->
+    <dl id="shiori3">
+    <dt id="CustomizeListTitle">タイムスケジュール</dt>
+      <dd><textarea cols="50" rows="4" maxlength="140" placeholder="2013年05月11日(土曜日)
+
+10:00　：　駅に集合"></textarea></dd>
+    </dl>
+<!-- //タイムスケジュール -->
+
+<!-- 行き先・場所 -->
+    <dl id="shiori4">
+    <dt id="CustomizeListTitle">行き先・場所</dt>
+      <dd class="custm1">
+      <ol>
+      <li><input type="text" size="50" maxlength="50" placeholder="行き先名"></li>
+      <li><input type="url" size="50" placeholder="マップURL"></li>
+      <li><textarea cols="50" rows="4" maxlength="140" placeholder="くわしく"></textarea></li>
+      </ol>
+      </dd>
+      <dd class="custm2">
+      <ol>
+      <li><input type="text" size="50" maxlength="50" placeholder="行き先名"></li>
+      <li><input type="url" size="50" placeholder="マップURL"></li>
+      <li><textarea cols="50" rows="4" maxlength="140" placeholder="くわしく"></textarea></li>
+      </ol>
+      </dd>
+      <dd class="custm3">
+      <ol>
+      <li><input type="text" size="50" maxlength="50" placeholder="行き先名"></li>
+      <li><input type="url" size="50" placeholder="マップURL"></li>
+      <li><textarea cols="50" rows="4" maxlength="140" placeholder="くわしく"></textarea></li>
+      </ol>
+      </dd>
+    </dl>
+<!-- //行き先・場所 -->
+
+<!-- もちもの -->
+    <dl id="shiori5">
+    <dt id="CustomizeListTitle">もちもの</dt>
+      <dd><ul>
+        <li class="custm1"><input type="text" size="50" maxlength="50" placeholder="薬草"></li>
+        <li class="custm2"><input type="text" size="50" maxlength="50" placeholder="ルーラの杖"></li>
+        <li class="custm3"><input type="text" size="50" maxlength="50" placeholder="骨付き肉"></li>
+      </ul></dd>
+    </dl>
+<!-- //もちもの -->
+
+<!-- メモスペース -->
+    <dl id="shiori6">
+    <dt id="CustomizeListTitle">メモ</dt>
+      <dd><textarea cols="50" rows="4" maxlength="140" placeholder="フリーエリアです。ご自由にどうぞ"></textarea></dd>
+    </dl>
+<!-- //メモスペース -->
+    </form>
+  </div>
+  <section>
+    <ul id="CustomizeMenuSave">
+    <form>
+      <li><input type="reset" value="キャンセル"></li>
+      <li><input type="button" value="削除"></li>
+      <li><input type="button" value="下書き保存"></li>
+      <li><input type="submit" value="公開"></li>
+    </form>
+    </ul>
+  </section>

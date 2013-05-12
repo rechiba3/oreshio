@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130512024103) do
+ActiveRecord::Schema.define(:version => 20130512074118) do
 
   create_table "catchphrases", :force => true do |t|
     t.string "catchphrase_head"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20130512024103) do
     t.integer  "story_id"
     t.string   "location"
     t.string   "map"
-    t.string   "comment"
+    t.text     "comment"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
