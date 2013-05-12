@@ -65,4 +65,9 @@ class UsersController < InheritedResources::Base
       }
     end
   end
+
+  def update
+    update! { edit_user_path(session[:login_user]) }
+  end
+
 end
