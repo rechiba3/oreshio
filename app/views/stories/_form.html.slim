@@ -1,0 +1,18 @@
+= simple_form_for resource do |f|
+  .field
+    = f.label :title, 'タイトル[必須]'
+    = f.input :title, label: false
+  .field
+    = f.label :sub_title, 'サブタイトル'
+    = f.input :sub_title, label: false
+  .field
+    = f.label :rule, '計画概要・ルール[必須]'
+    = f.input :rule, label: false
+  .field
+    = f.label :event_day, '計画日程[必須]'
+    = f.input :event_day, label: false, as: :date
+  .field
+    = f.label :memo, 'メモ'
+    = f.input :memo, label: false
+  .actions
+    = f.submit 'しおりを作成'
