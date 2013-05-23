@@ -1,6 +1,6 @@
 class CreateStories < ActiveRecord::Migration
   def change
-    create_table :stories do |t|
+    create_table :stories, :options => "DEFAULT CHARACTER SET = UTF8" do |t|
       t.integer   :user_id
       t.string    :title
       t.string    :sub_title

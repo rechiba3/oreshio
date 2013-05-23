@@ -1,6 +1,6 @@
 class CreateSchedules < ActiveRecord::Migration
   def change
-    create_table :schedules do |t|
+    create_table :schedules, :options => "DEFAULT CHARACTER SET = UTF8" do |t|
     	t.integer   :story_id
       t.datetime  :event_day
       t.string    :event_time
