@@ -1,6 +1,6 @@
 class CreateOauths < ActiveRecord::Migration
   def change
-    create_table :oauths do |t|
+    create_table :oauths, :options => "DEFAULT CHARACTER SET = UTF8" do |t|
       t.integer  "user_id"
       t.string   "provider",            :null => false
       t.string   "uid",                 :null => false
