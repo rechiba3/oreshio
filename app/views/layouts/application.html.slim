@@ -51,4 +51,6 @@ html lang="ja"
       footer
         // <!-- 開発者連絡先 -->
         address お問い合わせは開発者まで。
-        p.copyright 2013 &copy; おれたちのしおりprojectTeam
+        p.copyright
+          = link_to 'https://github.com/rechiba3/oreshio' do
+            '2013 &copy; おれたちのしおりprojectTeam'
